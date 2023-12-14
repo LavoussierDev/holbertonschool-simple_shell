@@ -13,7 +13,10 @@
 #include <sys/wait.h>
 #include <sys/stat.h>
 
+#define DELIM " \t\n"
+
 char *read_line(void);
+char **tokenizer(char *line);
 
 char *_strdup(const char *str);
 int _strcmp(char *s1, char *s2);

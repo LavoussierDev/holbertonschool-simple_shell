@@ -13,7 +13,7 @@ int main(int ac, char **argv)
 {
 	char *line = NULL;
 	char **command = NULL;
-	int status = 0;
+	int i, status = 0;
 	(void) ac;
 	(void) argv;
 
@@ -27,10 +27,12 @@ int main(int ac, char **argv)
 			return (status);
 		}
 
-		printf("%s", line);
-		free(line);
-
 		command = tokenizer(line);
+		if (!command)
+			continue;
+
+		for (i = 0; command[i]; i++)
+			printf("%s\n", command[i]);
 
 		/*status = _execute(command, argv);*/
 	}
