@@ -12,7 +12,7 @@
 int main(int ac, char **argv)
 {
 	char *line = NULL;
-	/*char **command = NULL;*/
+	char **command = NULL;
 	int status = 0;
 	(void) ac;
 	(void) argv;
@@ -21,13 +21,17 @@ int main(int ac, char **argv)
 	{
 		line = read_line();
 		if (line == NULL) /* ctr + D */
+		{
+			if (isatty(STDIN_FILENO))
+				write(STDOUT_FILENO, "\n", 1);
 			return (status);
+		}
 
 		printf("%s", line);
 		free(line);
 
-		/*command = tokenizer(line);
+		command = tokenizer(line);
 
-		status = _execute(command, argv);*/
+		/*status = _execute(command, argv);*/
 	}
 }
