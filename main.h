@@ -12,6 +12,5 @@
 
 char *get_user_input(FILE *file_stream);
 ssize_t execute_command(const char *command, size_t buffer_size);
-char *get_user_input(FILE *file_stream);
 
 #endif
