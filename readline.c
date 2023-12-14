@@ -7,7 +7,7 @@ char *read_line(void)
 	ssize_t n;
 
 	n = getline(&line, &len, stdin);
-	if (n == -1)
+	if (n == -1) /*added the "end of file" condition*/
 	{
 		return (NULL);
 	}
