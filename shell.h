@@ -13,4 +13,7 @@
 #include <sys/wait.h>
 #include <sys/stat.h>
 
+char *read_line(void);
+
+
 #endif shell_h
