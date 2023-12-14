@@ -15,12 +15,15 @@ int main(int ac, char **argv)
 	char **command = NULL;
 	int status = 0;
 	(void) ac;
+	(void) argv:
 
 	while (1)
 	{
 		line = read_line();
 		if (line == NULL) /* ctr + D */
 			return (status);
+
+		printf("%s", line);
 
 		command = tokenizer(line);
 
