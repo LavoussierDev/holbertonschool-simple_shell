@@ -13,7 +13,7 @@ char *_strdup(const char *str)
 		str++;
 	}
 	str = str - len;
-	ptr = malloc(sizeof(char) * (len + 1);
+	ptr = malloc(sizeof(char) * (len + 1));
 		if (ptr == NULL)
 			return (NULL);
 		for (i = 0; 1 <= len; i++)
@@ -63,3 +63,6 @@ char *_strcpy(char *dest, char *src)
 	{
 		dest[i] = src[i];
 		i++;
+	}
+	return dest;
+}
