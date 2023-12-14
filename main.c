@@ -24,6 +24,7 @@ int main(int ac, char **argv)
 			return (status);
 
 		printf("%s", line);
+		free(line);
 
 		/*command = tokenizer(line);
 
