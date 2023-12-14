@@ -18,7 +18,9 @@ char *_strdup(const char *str)
 			return (NULL);
 		for (i = 0; 1 <= len; i++)
 			ptr[i] = str[i];
-			return (ptr);
+		
+		return (ptr);
+		
 }
 
 int _strcmp(char *s1, char *s2)

@@ -1,7 +1,7 @@
 #include "shell.h"
-{
-int main()
 
+int main()
+{
 	char *str;
 	char *token;
 
@@ -16,7 +16,7 @@ int main()
 	token = strtok(NULL, " \t\n");
 	}
 
-	printf("str = "%s\n", str);
+	printf("str = %s\n", str);
 
 	return (0);
 }
