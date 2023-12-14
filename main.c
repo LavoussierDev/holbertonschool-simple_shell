@@ -13,7 +13,7 @@ int main(int ac, char **argv)
 {
 	char *line = NULL;
 	char **command = NULL;
-	int i, status = 0;
+	int status = 0;
 	(void) ac;
 
 	while (1)
@@ -31,6 +31,5 @@ int main(int ac, char **argv)
 			continue;
 
 		status = _execute(command, argv);
-
-		execve fork waitpid
+	}
 }
