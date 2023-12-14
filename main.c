@@ -19,7 +19,7 @@ int main(int ac, char **argv)
 	while (1)
 	{
 		line = read_line();
-		if (line == NULL)
+		if (line == NULL) /* ctr + D */
 			return (status);
 
 		command = tokenizer(line);
