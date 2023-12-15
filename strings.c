@@ -1,4 +1,5 @@
 #include "shell.h"
+#include <stdlib.h>
 
 char *_strdup(const char *str)
 {
@@ -68,3 +69,5 @@ char *_strcpy(char *dest, char *src)
 	}
 	return dest;
 }
+
+

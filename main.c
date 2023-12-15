@@ -23,13 +23,17 @@ int main(int ac, char **argv)
 		{
 			if (isatty(STDIN_FILENO))
 				write(STDOUT_FILENO, "\n", 1);
+			free(line);
 			return (status);
 		}
 
 		command = tokenizer(line);
+		free(line);
 		if (!command)
 			continue;
 
 		status = _execute(command, argv);
+		freearray(command);
 	}
+	return 0;
 }

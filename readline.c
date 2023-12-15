@@ -8,7 +8,9 @@ char *read_line(void)
 
 	if (isatty(STDIN_FILENO))
 	write(STDOUT_FILENO, "$ ", 2);
+
 	n = getline(&line, &len, stdin);
+
 	if (n == -1) /*added the "end of file" condition*/
 	{
 		free(line);
