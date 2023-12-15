@@ -1,12 +1,19 @@
-@include "shell.h"
+#include "shell.h"
 
 char *read_line(void)
 {
 	char *line = NULL;
 	size_t len = 0;
-	sszize_t n;
+	ssize_t n;
 
-	n= getline(&line, &len, stdin);
+	if (isatty(STDIN_FILENO))
+
+	write(STDOUT_FILENO, "$ ", 2);
+	n = getline(&line, &len, stdin);
+	if ( n == -1)
+	{
+		return (NULL);
+	}
 
 	return (line);
 }
