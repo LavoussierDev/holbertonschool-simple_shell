@@ -5,6 +5,7 @@ char **tokenizer(char *line)
 	char *token = NULL, *tmp = NULL;
 	char **command = NULL;
 	int cpt = 0;
+	int i;
 
 	if (!line)
 		return (NULL);
