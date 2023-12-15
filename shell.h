@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <stddef.h>
 
 #include <errno.h>
 #include <fcntl.h>
@@ -16,6 +17,7 @@
 #define DELIM " \t\n"
 
 char *read_line(void);
+char **tokenizer(char *line);
 
 char *_strdup(const char *str);
 int _strcmp(char *s1, char *s2);

@@ -11,8 +11,8 @@
 int main(int ac, char **argv)
 {
 	char *line = NULL;
-	/*char **command = NULL;*/
-	int status = 0;
+	char **command = NULL;
+	int i, status = 0;
 	(void) ac;
 	(void) argv;
 
@@ -25,9 +25,14 @@ int main(int ac, char **argv)
 			write(STDOUT_FILENO, "\n", 1);
 			return (status);
 		}
+		
+		command = tokenizer(line);
+		if (!command)
+			continue;
 
-		/*command = tokenizer(line);
+		for (i = 0; command[i]; i++)
+			printf("%s\n", command[i]);
 
-		status = _execute(command, argv);*/
+		/*status = _execute(command, argv);*/
 	}
 }
