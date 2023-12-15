@@ -15,6 +15,7 @@ int main(int ac, char **argv)
 	char **command = NULL;
 	int status = 0;
 	(void) ac;
+	(void) argv;
 
 	while (1)
 	{
@@ -28,9 +29,9 @@ int main(int ac, char **argv)
 		}
 
 		command = tokenizer(line);
-		free(line);
 		if (!command)
 			continue;
+
 
 		status = _execute(command, argv);
 		freearray(command);

@@ -12,7 +12,7 @@ int _execute(char **command, char **argv)
 		{
 			perror(argv[0]);
 			freearray(command);
-			exit(EXIT_FAILURE);
+			exit(0);
 		}
 	}
 	else
@@ -20,8 +20,5 @@ int _execute(char **command, char **argv)
 		waitpid(child, &status, 0);
 		freearray(command);
 	}
-	if (WIFEXITED(status))
-		return WEXITSTATUS(status);
-	else
-		return EXIT_FAILURE;
+		return (WEXITSTATUS(status));
 }
