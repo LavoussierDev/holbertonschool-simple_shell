@@ -11,7 +11,6 @@ char **tokenizer(char *line)
 
 	tmp = _strdup(line);
 
-	token = strtok(tmp, DELIM);
 	if (token == NULL)
 	{
 		free(line), line = NULL;
@@ -29,7 +28,7 @@ char **tokenizer(char *line)
 	command = malloc(sizeof(char *) * (cpt + 1));
 	if (!command)
 	{
-		free(line);
+		free(line), line = NULL;
 		return (NULL);
 	}
 
