@@ -15,9 +15,12 @@
 #include <sys/stat.h>
 
 #define DELIM " \t\n"
+extern char **environ;
 
 char *read_line(void);
 char **tokenizer(char *line);
+int _execute(char **command, char **argv);
+void freearray(char **arr);
 
 char *_strdup(const char *str);
 int _strcmp(char *s1, char *s2);
