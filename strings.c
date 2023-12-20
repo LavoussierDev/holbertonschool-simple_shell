@@ -1,26 +1,27 @@
 #include "shell.h"
+#include <stddef.h>
 #include <stdlib.h>
-#include <string.h>
 
 char *_strdup(const char *str)
 {
-    size_t len;
-    char *ptr;
+	char *ptr;
+	int i, len = 0;
 
-    if (str == NULL)
-        return NULL;
+	if (str == NULL)
+		return (NULL);
 
-    len = strlen(str);
-    ptr = malloc(len + 1);
+	while (str[len])
+	{
+		len++;
+	}
 
-    if (ptr == NULL)
-        return NULL;
-
-    strcpy(ptr, str);
-
-    return ptr;
+	ptr = malloc(sizeof(char) * (len + 1));
+	if (ptr == NULL)
+		return (NULL);
+	for (i = 0; i <= len; i++)
+		ptr[i] = str[i];
+	return (ptr);
 }
-
 int _strcmp(char *s1, char *s2)
 {
 	int cmp;
@@ -51,7 +52,7 @@ char *_strcat(char *dest, char *src)
 		p++;
 		src++;
 	}
-	*p = *src;
+	*p = '\0';
 	return (dest);
 }
 
@@ -67,4 +68,11 @@ char *_strcpy(char *dest, char *src)
 	return dest;
 }
 
+int _strlen(char *s)
+{
+	int len = 0;
 
+	while (s[len])
+		len++;
+	return (len);
+}

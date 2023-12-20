@@ -7,16 +7,13 @@ char *read_line(void)
 	ssize_t n;
 
 	if (isatty(STDIN_FILENO))
+
 	write(STDOUT_FILENO, "$ ", 2);
-
 	n = getline(&line, &len, stdin);
-
-	if (n == -1) /*added the "end of file" condition*/
+	if ( n == -1)
 	{
-		free(line);
 		return (NULL);
 	}
 
 	return (line);
-
 }

@@ -1,40 +1,39 @@
 #include "shell.h"
-#include <stdio.h>
 
-/*
- * main - main function for simple shell
- * @ac: argument count
- * @av: number of arguments
+/**
+ * main - simple shell function
+ * @ac: count of arguments
+ * @av: arguments
  *
- * Return: 0 always.
+ * return: 0
  */
 
 int main(int ac, char **argv)
 {
-	char *line = NULL;
-	char **command = NULL;
-	int status = 0;
+	char *line = NULL, **command = NULL;
+	int status = 0, idx = 0;
 	(void) ac;
-	(void) argv;
 
 	while (1)
 	{
 		line = read_line();
-		if (line == NULL) /* ctr + D */
+		if (line == NULL)
 		{
 			if (isatty(STDIN_FILENO))
 				write(STDOUT_FILENO, "\n", 1);
-			free(line);
 			return (status);
 		}
-
+		
+		idx++;
 		command = tokenizer(line);
 		if (!command)
 			continue;
 
+		if (is_builtin(command[0]))
+				handle_builtin(command, argv, &status, idx);
+		else
+			status = _execute(command, argv, idx);
 
-		status = _execute(command, argv);
-		freearray(command);
+		
 	}
-	return 0;
 }
