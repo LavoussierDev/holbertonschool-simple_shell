@@ -1,51 +1,50 @@
-#include "main.h"
+ #include "shell.h"
 
-/**
- * get_path - Get the PATH variable as an array of directories.
- * Return: An array of strings representing directories in the PATH.
- */
-char **get_path(void)
+char *_getpath(char *command)
 {
-    char *path_str = getenv("PATH");
-    char **path_arr = NULL;
-    char *token = NULL;
-    int num_dirs = 0, i = 0;
+    char *path_env, *full_cmd, *dir;
+    int i;
+    struct stat st;
 
-    if (!path_str)
+    if (command == NULL)
         return NULL;
 
-    /* Count the number of directories in PATH */
-    token = strtok(path_str, ":");
-    while (token)
+    for (i = 0; command[i]; i++)
     {
-        num_dirs++;
-        token = strtok(NULL, ":");
-    }
-
-    /* Allocate memory for the array of strings */
-    path_arr = malloc(sizeof(char *) * (num_dirs + 1));
-    if (!path_arr)
-        return NULL;
-
-    /* Populate the array with directory strings */
-    token = strtok(path_str, ":");
-    while (token)
-    {
-        path_arr[i] = _strdup(token);
-        if (!path_arr[i])
+        if (command[i] == '/')
         {
-            /* Memory allocation failure, free previous allocations */
-            while (i > 0)
-                free(path_arr[--i]);
-            free(path_arr);
+            if (stat(command, &st) == 0)
+                return strdup(command);
+
             return NULL;
         }
-        i++;
-        token = strtok(NULL, ":");
     }
 
-    /* Add NULL terminator */
-    path_arr[i] = NULL;
+    path_env = _getenv("PATH");
+    if (!path_env)
+        return NULL;
 
-    return path_arr;
+    dir = strtok(path_env, ":");
+    while (dir)
+    {
+        full_cmd = malloc(_strlen(dir) + _strlen(command) + 2);
+        if (full_cmd != NULL)
+        {
+            _strcpy(full_cmd, dir);
+            _strcat(full_cmd, "/");
+            _strcat(full_cmd, command);
+
+            if (stat(full_cmd, &st) == 0)
+            {
+                free(path_env);
+                return full_cmd;
+            }
+            free(full_cmd), full_cmd = NULL;
+
+            dir = strtok(NULL, ":");
+        }
+    }
+
+    free(path_env);
+    return NULL;
 }
