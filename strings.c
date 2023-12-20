@@ -9,12 +9,12 @@ char *_strdup(const char *str)
 
 	if (str == NULL)
 		return (NULL);
-	while (*str != '\0')
+
+	while (str[len])
 	{
 		len++;
-		str++;
 	}
-	str = str - len;
+
 	ptr = malloc(sizeof(char) * (len + 1));
 	if (ptr == NULL)
 		return (NULL);
@@ -52,7 +52,7 @@ char *_strcat(char *dest, char *src)
 		p++;
 		src++;
 	}
-	*p = *src;
+	*p = '\0';
 	return (dest);
 }
 
@@ -66,4 +66,13 @@ char *_strcpy(char *dest, char *src)
 		i++;
 	}
 	return dest;
+}
+
+int _strlen(char *s)
+{
+	int len = 0;
+
+	while (s[len])
+		len++;
+	return (len);
 }
