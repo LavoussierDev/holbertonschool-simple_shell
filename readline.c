@@ -10,7 +10,7 @@ char *read_line(void)
 
 	write(STDOUT_FILENO, "$ ", 2);
 	n = getline(&line, &len, stdin);
-	if ( n == -1)
+	if (n == -1)
 	{
 		return (NULL);
 	}
