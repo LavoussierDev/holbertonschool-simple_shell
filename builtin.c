@@ -41,11 +41,10 @@ int builtin_execute(char **tokens)
 
 int shell_num_builtins(built_s builtin[])
 {
-	unsigned int i;
+    unsigned int i = 0;
 
-	i = 0;
-	while (builtin[i].name != NULL)
-		i++;
+    while (builtin[i].name != NULL)
+        i++;
 
-	return (i);
+    return i;
 }
