@@ -1,29 +1,30 @@
 #include "shell.h"
+/**
+**shell_exit - exits the shell
+**Return: void
+**/
+
+	int shell_exit(void)
+	{
+		return (-1);
+	}
+
 
 /**
- * shell_exit - exits the shell
- * Return: -1
- */
-int shell_exit(void)
-{
-    return -1;
-}
+**shell_env - prints environment
+**Return: void
+**/
 
-/**
- * shell_env - prints environment
- * Return: 0
- */
-int shell_env(void)
-{
-    unsigned int i;
+	int shell_env(void)
+	{
+		unsigned int i;
 
-	i = 0;
-
-    while (environ[i] != NULL)
-    {
-        write(STDOUT_FILENO, environ[i], _strlen(environ[i]));
-        write(STDOUT_FILENO, "\n", 1);
-        i++;
-    }
-    return 0;
-}
+		i = 0;
+		while (environ[i] != NULL)
+		{
+			write(STDOUT_FILENO, environ[i], _strlen(environ[i]));
+			write(STDOUT_FILENO, "\n", 1);
+			i++;
+		}
+		return (0);
+	}

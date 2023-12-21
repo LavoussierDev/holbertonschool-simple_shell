@@ -23,15 +23,10 @@ int child(char *fullpath, char **tokens)
 	{
 		execve_status = execve(fullpath, tokens, envp);
 		if (execve_status == -1)
-		{
-			errors(2);
-			exit(EXIT_FAILURE);
-		}
+			return (-1);
 	}
 	else
-	{
-		waitpid(child_pid, &status, 0);
-	}
+		wait(&status);
 
 	return (0);
 }
