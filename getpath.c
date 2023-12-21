@@ -1,30 +1,29 @@
- #include "shell.h"
-
-char *_getpath(char *command)
+#include "holberton.h"
+/**
+ * _which - searches directories in PATH variable for command
+ * @command: to search for
+ * @fullpath: full path of command to execute
+ * @path: full PATH variable
+ * Return: pointer to full_path
+ */
+char *_which(char *command, char *fullpath, char *path)
 {
-    char *path_env, *full_cmd, *dir;
-    int i;
-    struct stat st;
+	unsigned int command_length, path_length, original_path_length;
+	char *path_copy, *token;
 
-    if (command == NULL)
-        return NULL;
-
-    for (i = 0; command[i]; i++)
-    {
-        if (command[i] == '/')
-        {
-            if (stat(command, &st) == 0)
-                return strdup(command);
-
-            return NULL;
-        }
-    }
-
-    path_env = _getenv("PATH");
-    if (!path_env)
-        return NULL;
-
-    dir = strtok(path_env, ":");
+	command_length = _strlen(command);
+	original_path_length = _strlen(path);
+	path_copy = malloc(sizeof(char) * original_path_length + 1);
+	if (path_copy == NULL)
+	{
+		errors(3);
+		return (NULL);
+	}
+	_strcpy(path_copy, path);
+	/* copy PATH directory + command name and check if it exists */
+	token = strtok(path_copy, ":");
+	if (token == NULL)
+		token = strtok(NULL, ":");
     while (dir)
     {
         full_cmd = malloc(_strlen(dir) + _strlen(command) + 2);
