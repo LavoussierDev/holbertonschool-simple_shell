@@ -1,22 +1,20 @@
- #include "shell.h"
-
-char *_getenv(char *variable)
+#include "holberton.h"
+/**
+ * _getenv - gets an environment variable
+ * @name: environment variable to get
+ * Return: pointer to environment variable or NULL if there is no match
+ */
+char *_getenv(const char *name)
 {
-        char *tmp, *key, *value, *env;
-        int i;
+		char **environ_copy;
+		char *variable, *value, *path;
+		int compare;
+		unsigned int path_length, environ_length, length, i;
 
-        for (i = 0; environ[i]; i++)
-        {
-                tmp = _strdup(environ[i]);
-                key = strtok(tmp, "=");
-                if (_strcmp(key, variable) == 0)
-                {
-                        value = strtok(NULL, "\n");
-                        env = _strdup(value);
-                        free(tmp);
-                        return (env);
-                }
-                free(tmp), tmp = NULL;
-        }
-        return (NULL);
-}
+		environ_length = 0;
+		while (environ[environ_length] != NULL)
+			environ_length++;
+		environ_copy = NULL;
+		environ_copy = copy_env(environ_copy, environ_length);
+
+
