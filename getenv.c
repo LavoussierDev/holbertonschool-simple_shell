@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "holberton.h"
 /**
  * _getenv - gets an environment variable
  * @name: environment variable to get
@@ -27,7 +27,7 @@ char *_getenv(const char *name)
 		{
 			value = strtok(variable, "=");
 			value = strtok(NULL, "\n ");
-			if (value == NULL)
+			if (value == '\0')
 			{
 				errors(4);
 				exit(EXIT_FAILURE);
