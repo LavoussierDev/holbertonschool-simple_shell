@@ -1,20 +1,21 @@
- #include "shell.h"
-
-int is_builtin(char *command)
+#include "holberton.h"
+/**
+**builtin_execute - executes the built in functions
+**@tokens: arguments being passed
+**Return: tokens
+**/
+int builtin_execute(char **tokens)
 {
-        char *builtins[] = {
-                "exit", "env", "setenv",
-                "cd", NULL
-                };
-        int i;
+	int status;
+	unsigned int length;
+	unsigned int num;
+	unsigned int i;
 
-        for (i = 0; builtins[i]; i++)
-        {
-                if (_strcmp(command, builtins[i]) == 0)
-                        return (1);
-        }
-        return (0);
-}
+	built_s builtin[] = {
+		{"exit", shell_exit},
+		{"env", shell_env},
+		{NULL, NULL}
+	};
 
 void handle_builtin(char **command, char **argv, int *status, int idx)
 {
