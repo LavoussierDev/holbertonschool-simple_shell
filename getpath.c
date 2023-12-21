@@ -24,26 +24,28 @@ char *_which(char *command, char *fullpath, char *path)
 	token = strtok(path_copy, ":");
 	if (token == NULL)
 		token = strtok(NULL, ":");
-    while (dir)
-    {
-        full_cmd = malloc(_strlen(dir) + _strlen(command) + 2);
-        if (full_cmd != NULL)
-        {
-            strcpy(full_cmd, dir);
-            strcat(full_cmd, "/");
-            strcat(full_cmd, command);
-
-            if (stat(full_cmd, &st) == 0)
-            {
-                free(path_env);
-                return full_cmd;
-            }
-            free(full_cmd), full_cmd = NULL;
-
-            dir = strtok(NULL, ":");
-        }
-    }
-
-    free(path_env);
-    return NULL;
+	while (token != NULL)
+	{
+		path_length = _strlen(token);
+		fullpath = malloc(sizeof(char) * (path_length + command_length) + 2);
+		if (fullpath == NULL)
+		{
+			errors(3);
+			return (NULL);
+		}
+		_strcpy(fullpath, token);
+		fullpath[path_length] = '/';
+		_strcpy(fullpath + path_length + 1, command);
+		fullpath[path_length + command_length + 1] = '\0';
+		if (access(fullpath, X_OK) != 0)
+		{
+			free(fullpath);
+			fullpath = NULL;
+			token = strtok(NULL, ":");
+		}
+		else
+			break;
+	}
+	free(path_copy);
+	return (fullpath);
 }
