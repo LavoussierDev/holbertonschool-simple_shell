@@ -5,38 +5,53 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include <stddef.h>
-
-#include <errno.h>
-#include <fcntl.h>
-
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <sys/stat.h>
 
-#define DELIM " \t\n"
+#define BUFFER 1024
+#define TRUE 1
+#define PROMPT "$ "
+#define ERR_MALLOC "Unable to malloc\n"
+#define ERR_FORK "Unable to fork\n"
+#define ERR_PATH "No such file or directory\n"
 extern char **environ;
 
-char *read_line(void);
-char **tokenizer(char *line);
-int _execute(char **command, char **argv, int idx);
+typedef struct list_s
+{
+  char *value;
+  struct list_s *next;
+} list_s;
 
-char *_itoa(int n);
-void reverse_string(char *str, int len);
-void freearray(char **arr);
-void print_error(char *name, char *cmd, int idx);
-char *_getenv(char *variable);
-char *_getpath(char *command);
+typedef struct built_s
+{
+  char *name;
+  int (*p)(void);
+} built_s;
 
-char *_strdup(const char *str);
-int _strcmp(char *s1, char *s2);
+void prompt(int fd, struct stat buf);
+char *_getline(FILE *fp);
+char **tokenizer(char *str);
+char *_which(char *command, char *fullpath, char *path);
+int child(char *fullpath, char **tokens);
+void errors(int error);
+
+void _puts(char *str);
 int _strlen(char *s);
-char *_strcat(char *dest, char *src);
+int _strcmp(char *name, char *variable, unsigned int length);
+int _strncmp(char *name, char *variable, unsigned int length);
 char *_strcpy(char *dest, char *src);
 
-int is_builtin(char *command);
-void handle_builtin(char **command, char **argv, int *status, int idx);
-void exit_shell(char **command, int *status);
-void print_env(char **command, int *status);
+int shell_env(void);
+int shell_exit(void);
+int builtin_execute(char **tokens);
+int shell_num_builtins(built_s builtin[]);
+
+char *_getenv(const char *name);
+char **copy_env(char **environ_copy, unsigned int environ_length);
+list_s *pathlist(char *variable, list_s *head);
+
+void free_all(char **tokens, char *path, char *line, char *fullpath, int flag);
+void free_dp(char **array, unsigned int length);
 
 #endif
