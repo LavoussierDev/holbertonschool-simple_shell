@@ -16,25 +16,23 @@ int builtin_execute(char **tokens)
 		{"env", shell_env},
 		{NULL, NULL}
 	};
+	
+	if (tokens[0] == NULL)
+		return (1);
 
-void handle_builtin(char **command, char **argv, int *status, int idx)
-{
-        (void) argv;
-        (void) idx;
+	length = _strlen(tokens[0]);
 
-        if (_strcmp(command[0], "exit") == 0)
-                exit_shell(command, status);
-
-        else if (_strcmp(command[0], "env") == 0)
-                print_env(command, status);
+	num = shell_num_builtins(builtin);
+	for (i = 0; i < num; i++)
+	{
+		if (_strcmp(tokens[0], builtin[i].name, length) == 0)
+		{
+			status = (builtin[i].p)();
+			return (status);
+		}
+	}
+	return (1);
 }
-
-void exit_shell(char **command, int *status)
-{
-        freearray(command);
-        exit(*status);
-}
-
 void print_env(char **command, int *status)
 {
         int i;
