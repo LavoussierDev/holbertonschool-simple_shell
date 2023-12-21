@@ -1,18 +1,23 @@
-#include "shell.h"
+#include "holberton.h"
 
-char *read_line(void)
+/**
+ * _getline - puts input from user into buffer line
+ * @fp: buffer for user input
+ * Return: buffer with user input
+ */
+char *_getline(FILE *fp)
 {
-	char *line = NULL;
-	size_t len = 0;
-	ssize_t n;
+	char *line;
+	ssize_t read;
+	size_t len;
 
-	if (isatty(STDIN_FILENO))
-
-	write(STDOUT_FILENO, "$ ", 2);
-	n = getline(&line, &len, stdin);
-	if ( n == -1)
+	line = NULL;
+	len = 0;
+	read = getline(&line, &len, fp);
+	if (read == -1)
 	{
-		return (NULL);
+		free(line);
+		exit(EXIT_SUCCESS);
 	}
 
 	return (line);
