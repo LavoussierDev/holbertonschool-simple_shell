@@ -9,19 +9,20 @@ void errors(int error)
 {
 	switch (error)
 	{
-	case 1: /* writes fork error to stderr */
+	case 1:
 		write(STDERR_FILENO, ERR_FORK, _strlen(ERR_FORK));
 		perror("Error");
 		break;
 
-	case 2: /* writes execve error to stderr */
+	case 2:
 		perror("Error");
 		break;
 
-	case 3: /* writes malloc error to stderr */
+	case 3:
 		write(STDERR_FILENO, ERR_MALLOC, _strlen(ERR_MALLOC));
 		break;
-	case 4: /* writes empty path error to stderr */
+
+	case 4:
 		write(STDERR_FILENO, ERR_PATH, _strlen(ERR_PATH));
 		break;
 
