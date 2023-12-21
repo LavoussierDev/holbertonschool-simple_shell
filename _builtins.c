@@ -15,7 +15,9 @@ int shell_exit(void)
  */
 int shell_env(void)
 {
-    unsigned int i = 0;
+    unsigned int i;
+
+	i = 0;
 
     while (environ[i] != NULL)
     {
@@ -23,6 +25,5 @@ int shell_env(void)
         write(STDOUT_FILENO, "\n", 1);
         i++;
     }
-    
     return 0;
 }
