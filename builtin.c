@@ -33,15 +33,19 @@ int builtin_execute(char **tokens)
 	}
 	return (1);
 }
-void print_env(char **command, int *status)
-{
-        int i;
+/**
+**shell_num_builtins - this check num built-ins
+**@builtin: takes the builtin to be counted
+**Return: num of built-ins
+**/
 
-        for (i = 0; environ[i]; i++)
-        {
-                write(STDOUT_FILENO, environ[i], _strlen(environ[i]));
-                write(STDOUT_FILENO, "\n", 1);
-        }
-        freearray(command);
-        *status = 0;
+int shell_num_builtins(built_s builtin[])
+{
+	unsigned int i;
+
+	i = 0;
+	while (builtin[i].name != NULL)
+		i++;
+
+	return (i);
 }
