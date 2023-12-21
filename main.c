@@ -1,39 +1,48 @@
 #include "shell.h"
-
 /**
- * main - simple shell function
- * @ac: count of arguments
- * @av: arguments
- *
- * return: 0
+ * main - main loop of shell
+ * Return: 0 on success
  */
-
-int main(int ac, char **argv)
+int main(void)
 {
-	char *line = NULL, **command = NULL;
-	int status = 0, idx = 0;
-	(void) ac;
+	char *line, *path, *fullpath;
+	char **tokens;
+	int flag, builtin_status, child_status;
+	struct stat buf;
 
-	while (1)
+	while (TRUE)
 	{
-		line = read_line();
-		if (line == NULL)
+		prompt(STDIN_FILENO, buf);
+		line = _getline(stdin);
+		if (_strcmp(line, "\n", 1) == 0)
 		{
-			if (isatty(STDIN_FILENO))
-				write(STDOUT_FILENO, "\n", 1);
-			return (status);
-		}
-		
-		idx++;
-		command = tokenizer(line);
-		if (!command)
+			free(line);
 			continue;
-
-		if (is_builtin(command[0]))
-				handle_builtin(command, argv, &status, idx);
+		}
+		tokens = tokenizer(line);
+		if (tokens[0] == NULL)
+			continue;
+		builtin_status = builtin_execute(tokens);
+		if (builtin_status == 0 || builtin_status == -1)
+		{
+			free(tokens);
+			free(line);
+		}
+		if (builtin_status == 0)
+			continue;
+		if (builtin_status == -1)
+			_exit(EXIT_SUCCESS);
+		flag = 0; /* 0 if full_path is not malloc'd */
+		path = _getenv("PATH");
+		fullpath = _which(tokens[0], fullpath, path);
+		if (fullpath == NULL)
+			fullpath = tokens[0];
 		else
-			status = _execute(command, argv, idx);
-
-		
+			flag = 1; /* if fullpath was malloc'd, flag to free */
+		child_status = child(fullpath, tokens);
+		if (child_status == -1)
+			errors(2);
+		free_all(tokens, path, line, fullpath, flag);
 	}
+	return (0);
 }
