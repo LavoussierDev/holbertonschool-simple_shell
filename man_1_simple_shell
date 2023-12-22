@@ -1,0 +1,48 @@
+.TH hsh 1 "2023-12-11" "1.0" "User Commands"
+.SH NAME
+hsh \- The Simple Shell
+
+.SH DESCRIPTION
+hsh is a simple shell designed for users seeking a lightweight and intuitive command-line interface. Similar to bash, hsh provides essential features for interacting with the system, executing commands, and managing files. It offers a user-friendly experience while maintaining a minimalistic design.
+
+.SH SYNOPSIS
+.B hsh [command ...]
+
+.SH FEATURES
+hsh supports a variety of commands, including ls, pwd, echo, cat, exit, and more. It aims to be a versatile yet straightforward shell.
+
+.SH OPTIONS
+hsh provides a set of options for customization and control. Users can explore its capabilities by invoking specific options alongside commands.
+
+.SH USAGE
+To use hsh, simply enter the desired command followed by any applicable options or arguments. The shell will execute the command and display the results.
+
+.SH EXAMPLES
+Explore the capabilities of hsh with the following examples:
+.B hsh ls -l
+.br
+.B hsh echo "Hello, World!"
+.br
+.B hsh cat file.txt
+
+.SH VERSION
+hsh version 1.0
+
+.SH AUTHOR
+Onil Rodriguez
+.br
+Javier Ferrer
+
+.SH REPORTING BUGS
+We welcome your feedback! If you encounter any issues or have suggestions for improvement, please report them to the hsh development team on our github repo.
+
+.SH SEE ALSO
+.B sh(1), zsh(1), bash(1)
+
+.SH NOTES
+The goal is to have a full fledge shell personalized to my usage with arch linux in the near future.
+
+.SH BUGS
+cd command is not working properly
+.br
+
