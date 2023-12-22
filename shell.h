@@ -17,16 +17,26 @@
 #define ERR_PATH "No such file or directory\n"
 extern char **environ;
 
+/**
+ * struct list_s - a struct, part of path list.
+ * @value: unused value.
+ * @next: pointer for the next value
+ */
 typedef struct list_s
 {
-  char *value;
-  struct list_s *next;
+char *value;
+struct list_s *next;
 } list_s;
 
+/**
+ * struct built_s - a struct, part of executing built in functions.
+ * @name: verifies the name of the builtin & confirms if not null.
+ * @p: verifies that the number of chars on of the built in is correct
+ */
 typedef struct built_s
 {
-  char *name;
-  int (*p)(void);
+char *name;
+int (*p)(void);
 } built_s;
 
 void prompt(int fd, struct stat buf);
