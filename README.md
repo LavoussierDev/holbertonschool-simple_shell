@@ -1,6 +1,6 @@
 ## Simple Shell
-![img](img.png)
 
+![[img.png]]
 #### Table of contents
 - Download & execute
 - What is it?
