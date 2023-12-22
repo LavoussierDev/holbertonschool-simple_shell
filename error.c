@@ -2,7 +2,7 @@
 
 /**
  * errors - prints errors based on case
- * @error: error number associated with perror statement
+ * @error: number associated with perror
  * Return: void
  */
 void errors(int error)

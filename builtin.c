@@ -1,7 +1,7 @@
 #include "shell.h"
 /**
-**builtin_execute - executes the built in functions
-**@tokens: arguments being passed
+**builtin_execute - executes the builtin functions
+**@tokens: arguments
 **Return: tokens
 **/
 int builtin_execute(char **tokens)
@@ -35,8 +35,8 @@ int builtin_execute(char **tokens)
 }
 
 /**
-**shell_num_builtins - this check num built-ins
-**@builtin: takes the builtin to be counted
+**shell_num_builtins - checks num builtins
+**@builtin: counts the builtins
 **Return: num of built-ins
 **/
 
