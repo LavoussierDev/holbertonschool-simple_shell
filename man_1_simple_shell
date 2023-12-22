@@ -13,6 +13,25 @@ hsh supports a variety of commands, including ls, pwd, echo, cat, exit, and more
 
 .SH OPTIONS
 hsh provides a set of options for customization and control. Users can explore its capabilities by invoking specific options alongside commands.
+.br
+.IP
+.B -i
+If the -i option is present, the shell is interactive.
+
+.br
+.B -l
+Make bash act as if it had been invoked as a login shell
+
+.br
+.IP
+.B -s
+If the -s option is present, or if no arguments remain after option processing, then commands are read from the standard input.  This option allows the positional parameters to be set when invoking an interactive shell.
+
+.br
+.IP
+.B -D
+A list of all double-quoted strings preceded by $ is printed on the standard output.  These are the strings that are subject to language translation when the current locale is not C or POSIX.  This implies the -n option; no commands will be executed.
+
 
 .SH USAGE
 To use hsh, simply enter the desired command followed by any applicable options or arguments. The shell will execute the command and display the results.
