@@ -37,7 +37,7 @@ Use the man page (man) _i.e `man hsh`_
 - exit
 - ps
 
-## Files
+## Files & Purpose
 - AUTHORS: Names of Authors
 
 - _Builtins.c: The code closes the program when asked ("exit") and shows a list of things it knows ("env").
