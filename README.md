@@ -37,6 +37,23 @@ Use the man page (man) _i.e `man hsh`_
 - exit
 - ps
 
+## Files
+- AUTHORS: Names of Authors
+- _builtins.c: The code closes the program when asked ("exit") and shows a list of things it knows ("env").
+- builtin.c: The code runs built-in functions like "exit" and "env" based on user input. The second function counts the number of built-in commands.
+- error.c: The code prints errors based on specific cases using switch statements and perror.
+- freeall.c: The code frees dynamically allocated memory for various pointers, including tokens and paths.
+- getenv.c: The code defines a function `_getenv` that retrieves the value of an environment variable by searching through a copy of the system's environment variables. It creates a duplicate to avoid altering the original environment. The function iterates through the copy, compares variable names, and returns the corresponding value if a match is found. The `copy_env` function handles the creation of the duplicate, memory allocation, and copying of environment variables. If successful, it returns a pointer to the environment variable; otherwise, it returns NULL, handling potential errors.
+- getpath.c: The code defines a function `_which` that searches directories in the `PATH` variable for a specified command. It creates a copy of the `PATH`, tokenizes it to extract individual directories, and constructs a potential full path by appending the command name. It checks if the constructed path is executable, and if found, returns a pointer to the full path; otherwise, it continues searching. The function manages memory allocations and handles errors, returning NULL if unsuccessful.
+- getpid.c: The code defines a function `child` responsible for executing a command in a child process. It forks a child process, and in the child, it attempts to execute the specified command using `execve`. If the execution is successful, the child process exits; otherwise, it returns an error code. The parent process waits for the child to finish and then returns 0 on success. The function handles errors and manages the execution process, ensuring proper cleanup and reporting.
+- getprompt.c: The code defines a function `prompt` that checks if the file stream corresponds to a character device (like a terminal) and prints a prompt if true. Another function `_puts` is defined to print a string without a newline character.
+- hsh: The compile code (i.e. the executable shell)
+- main.c: The code is the main loop of a shell. It continuously prompts for user input, reads the input line, tokenizes it, and executes built-in commands or external programs. It handles cases such as empty input, executes built-in commands, and calls the appropriate functions to execute external commands. The shell supports commands like ls, pwd, echo, cat, and exit. The loop continues until the user exits the shell.
+- man_1_simple_shell: The Man page.
+- readline.c: The code reads user input from a file stream into a buffer using getline, dynamically allocating memory for the input line. If an error or end of file occurs, it frees the buffer and exits the program.
+- shell.h: Header file.
+- strings.c: The code contains string manipulation functions, including comparisons, copying, and length determination.
+- tokenizer.c: The code implements a function that tokenizes a user input string into an array of tokens using whitespace characters as delimiters.
 
 
 ## Requirements
