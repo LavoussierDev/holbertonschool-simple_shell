@@ -56,7 +56,7 @@ Use the man page (man) _i.e `man hsh`_
 
 - Getprompt.c: The code defines a function `prompt` that checks if the file stream corresponds to a character device (like a terminal) and prints a prompt if true. Another function `_puts` is defined to print a string without a newline character.
 
-- Hsh: The compile code (i.e. the executable shell)
+- Hsh: The compiled code (i.e. the executable shell)
 
 - Main.c: The code is the main loop of a shell. It continuously prompts for user input, reads the input line, tokenizes it, and executes built-in commands or external programs. It handles cases such as empty input, executes built-in commands, and calls the appropriate functions to execute external commands. The shell supports commands like ls, pwd, echo, cat, and exit. The loop continues until the user exits the shell.
 
