@@ -1,10 +1,14 @@
 ## Simple Shell
+![img](img.png)
+
 #### Table of contents
 - Download & execute
 - What is it?
 - Usage
 - Built-in commands
+- Files & Purpose
 - Requirements
+- Authors
 ## Download & execute
 - `` git clone git@github.com:LavoussierDev/holbertonschool-simple_shell.git ``
 - Compile using gcc:  ``gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh``
